@@ -21,7 +21,26 @@ const two=(num)=>{
     const user=14
     return user+num
 }
-two(4)
+//two(4);
+
 //implicit return 
 const three=(num1,num2)=>(num1+num2)
-console.log(three(3,4))
+//console.log(three(3,4))
+
+
+
+
+console.log('Piyuswh')
+
+console.log('Script started');
+//(function() {
+    //console.log('Ayush');
+//})();
+((Name)=>{
+    console.log(`${Name} , welcome to our website.`);
+}
+)('Ayush');
+
+console.log('Script ended');
+
+
