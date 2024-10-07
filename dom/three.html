@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to create Dom element</title>
+</head>
+<body style="background-color: black; ">
+    
+</body>
+<script>
+    const doc=document.createElement('div')
+    doc.className='Ayush'
+    doc.id=Math.round(Math.random()*10+1)
+    doc.setAttribute('tittle','I am good Student.')
+    doc.style.backgroundColor='red';
+    doc.style.padding='15px';
+    //doc.innerHTML='Hello India'
+    const addnode=document.createTextNode('Hello world')
+    doc.appendChild(addnode)
+    document.body.appendChild(doc)
+    console.log(doc)
+</script>
+</html>
