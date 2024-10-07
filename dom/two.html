@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body>
+    <div class="parent" style="background-color: #212121; color: white;">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const val=document.querySelector('.parent')
+    //console.log(val)
+    //console.log(val.lastElementChild.innerHTML)
+    val.style.backgroundColor = 'blue';
+    //console.log(val.children)
+    const value=Array.from(val.children)
+    value.forEach((element) => {
+        //console.log(element.innerHTML); 
+    });
+    //console.log(val.firstElementChild.innerHTML)
+    val.children[0].style='color:orange; padding:20px'
+
+    const day=document.querySelector('.day')
+   // console.log(day.parentNode)
+
+   console.log(val.childNodes)
+
+</script>
+</html>
