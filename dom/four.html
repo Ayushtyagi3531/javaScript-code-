@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and remove</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    const value=(temp)=>{
+    const ull=document.querySelector('.language')
+    const val=document.createElement('li')
+    const node=document.createTextNode(temp)
+    val.appendChild(node)
+    ull.appendChild(val)
+    
+    }
+    value('Python')
+    value('Java')
+
+
+    //Edit the value of html li
+    const second = document.querySelector('li:nth-child(2)');
+    //second.innerHTML='Html'
+    const val=document.createElement('li')
+    const node=document.createTextNode('Html')
+    val.appendChild(node)
+    second.replaceWith(val)
+    console.log(second);
+
+    //edit
+    const first=document.querySelector('li:first-child')
+    first.outerHTML='<li>php</li>'
+
+    //remove any element
+    const last=document.querySelector('li:last-child')
+    last.remove()
+    
+
+    
+</script>
+</html>
