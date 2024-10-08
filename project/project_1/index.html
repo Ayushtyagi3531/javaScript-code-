@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        h1 {
+            color:black;
+            background-color: brown;
+            padding: 10px; 
+            margin-bottom: 20px; 
+        }
+        
+        p {
+            color: white;
+            font-size: 18px; 
+            margin-top: 20px; 
+            margin-bottom: 20px; 
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px; 
+            border-radius: 5px;
+        }
+
+        .button {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            display: inline-block;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        
+        #red {
+            background-color: red;
+        }
+        
+        #green {
+            background-color: green;
+        }
+        
+        #blue {
+            background-color: blue;
+        }
+        #orange {
+            background-color: orange;
+        }
+        #white {
+            background-color:white;
+        }
+        
+        #yellow {
+            background-color: yellow;
+        }
+        #purple{
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>This is my color changer project</h1>
+        <div class="button" id="red"></div>
+        <div class="button" id="purple"></div>
+        <div class="button" id="green"></div>
+        <div class="button" id="orange"></div>
+        <div class="button" id="white"></div>
+        <div class="button" id="blue"></div>
+        <div class="button" id="yellow"></div>
+        <p>After clicking on any button, you can change the color of your body.</p>
+    </div>
+
+    
+</body>
+<script>
+   const buttons = document.querySelectorAll('.button');
+buttons.forEach((button) => {
+    // console.log(button);
+    button.addEventListener('click', (e) => {
+        //console.log(e.target)
+        document.body.style.background=e.target.id;
+    });
+});
+
+</script>
+</html>
