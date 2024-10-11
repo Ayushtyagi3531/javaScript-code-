@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <style>
+        /* Styling here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        input[type="number"] {
+            padding: 0.8rem;
+            font-size: 1rem;
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .results {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .results p {
+            margin: 0.8rem 0;
+        }
+
+        .guess_remaining {
+            color: #ff5722;
+            font-weight: bold;
+        }
+
+        .result {
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            label {
+                font-size: 1.1rem;
+            }
+
+            input[type="number"] {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+
+            input[type="submit"] {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .results {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>You have to guess a number between 1 to 100. You have 10 attempts to guess the right number.</h2>
+        <form action="">
+            <label for="number">Guess a number</label>
+            <input type="number" placeholder="Enter a number" min="1" max="100" id="guess">
+            <input type="submit" value="Guess">
+        </form>
+        <div class="results">
+            <p>Previous Guess: <span class="pre"></span></p>
+            <p>Guess Remaining: <span class="guess">10</span></p>
+            <p><span class="result"></span></p>
+        </div>
+    </div>
+</body>
+<script>
+    const num = Math.floor(Math.random() * 100) + 1;
+    console.log(num); // For debugging
+
+    let guess_remaining = 10;
+    const previous = document.querySelector('.pre');
+    const guess_rem = document.querySelector('.guess');
+    const result = document.querySelector('.result');
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const guessInput = document.querySelector('#guess');
+        const guess = parseInt(guessInput.value);
+
+        if (isNaN(guess) || guess < 1 || guess > 100) {
+            result.textContent = "Please enter a valid number between 1 and 100.";
+            return; // Don't continue if the input is invalid
+        }
+
+        previous.textContent = guess;
+        guess_remaining -= 1;
+        guess_rem.textContent = guess_remaining;
+
+        if (guess === num) {
+            result.textContent = "Congratulations! You guessed the right number.";
+            disableForm();
+        } else if (guess_remaining === 0) {
+            result.textContent = "Game over! You've run out of guesses. The number was " + num + ".";
+            disableForm();
+        } else if (guess < num) {
+            result.textContent = 'Number is too low.';
+        } else {
+            result.textContent = 'Number is too high.';
+        }
+
+        // Clear the input for the next guess
+        guessInput.value = '';
+    });
+
+    function disableForm() {
+        // Disable the guess input
+        document.querySelector('#guess').disabled = true;
+
+        // Disable the submit button
+        document.querySelector('input[type="submit"]').disabled = true;
+    }
+</script>
+</html>
