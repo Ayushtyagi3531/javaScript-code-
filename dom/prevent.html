@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing and Bubbling</title>
+</head>
+<body>
+
+    <div id="container" style="padding: 20px; border: 2px solid red;">
+        Container (Div)
+        <ul id="list" style="padding: 20px; border: 2px solid blue;">
+            List (UL)
+            <li style="padding: 10px; border: 1px solid green;">Item 1 (LI)</li>
+            <li style="padding: 10px; border: 1px solid green;">Item 2 (LI)</li>
+            <li style="padding: 10px; border: 1px solid green;">Item 3 (LI)</li>
+        </ul>
+    </div>
+
+    <script>
+        // Add event listeners in capturing and bubbling phase
+        document.getElementById('container').addEventListener('click', function() {
+            console.log('DIV clicked');
+        }, false);  // Bubbling (default)
+
+        document.getElementById('list').addEventListener('click', function() {
+            console.log('UL clicked');
+        }, false);  // Bubbling (default)
+
+        document.querySelectorAll('li').forEach(function(li) {
+            li.addEventListener('click', function(e) {
+                console.log('LI clicked');
+                e.stopPropagation()
+            }, false);  // Bubbling (default)
+        });
+
+        
+    </script>
+</body>
+</html>

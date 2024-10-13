@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load and Unload Example</title>
+</head>
+<body>
+    <h1>JavaScript Load and Unload Events</h1>
+    <img id="myImage" src="https://via.placeholder.com/300" alt="Example Image">
+
+    <script>
+        //in addeventlisner the default value is false which is reffered to the bubbling which means top to bottom 
+        //in addeventlisner if we use true  which is reffered to the capturing  which means bottom to top 
+
+        // Load event for the entire window (page)
+        window.addEventListener('load', function() {
+            console.log('The entire page is fully loaded, including all images, styles, and scripts.');
+
+            // Additional logic to run after everything is loaded
+            const img = document.getElementById('myImage');
+            img.style.border = '5px solid green';
+        },false);
+
+        // Load event for a specific element (image)
+        const img = document.getElementById('myImage');
+        img.addEventListener('load', function() {
+            console.log('The image has fully loaded.');
+        });
+    </script>
+</body>
+</html>

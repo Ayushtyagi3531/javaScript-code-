@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Increase the Value</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        span {
+            color: #ff5722;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Increase the value <span id="val">0</span></h1>
+        <button id="startBtn">Start Counting</button>
+    </div>
+
+    <script>
+        const span = document.getElementById('val');
+        const button = document.getElementById('startBtn');
+
+        button.addEventListener('click', () => {
+            for (let i = 1; i <= 1000; i++) {
+                setTimeout(() => {
+                    span.innerHTML = `${i} +`;
+                }, i * 10);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Button on Form</title>
+    <style>
+        /* Styling the form */
+        .form {
+            display: none; /* Initially hidden */
+            background-color: #f0f0f0;
+            padding: 20px;
+            width: 300px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative; /* Set to relative to position the cancel button inside it */
+        }
+
+        /* Positioning the cancel button inside the form at the top-right */
+        .cancel-btn {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+            cursor: pointer;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: absolute; /* Positioned inside the form */
+            top: -10px; /* Adjust position above the form */
+            right: -10px; /* Positioned at the top-right corner of the form */
+            background-color: white; /* Make it stand out */
+            border-radius: 50%; /* Make it circular */
+            display: none; /* Initially hidden */
+        }
+
+        /* Change color and add scale effect on hover */
+        .cancel-btn:hover {
+            color: #b30000;
+            transform: scale(1.1);
+        }
+
+        .cancel-btn:focus {
+            outline: none;
+        }
+
+        /* Form input field styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Styling the submit button */
+        .submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit:hover {
+            background-color: #45a049;
+        }
+
+        /* Styling the show button */
+        .show {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .show:hover {
+            background-color: #007bb5;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Form -->
+    <div class="form">
+        <button class="cancel-btn">X</button> <!-- Moved the cancel button inside the form -->
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <br>
+        <button class="submit" type="submit">Submit</button>
+    </div>
+
+    <!-- Show button -->
+    <button class="show">Show Form</button>
+
+</body>
+<script>
+    const cancelBtn = document.querySelector('.cancel-btn');
+    const show = document.querySelector('.show');
+    const form = document.querySelector('.form');
+
+    show.addEventListener('click', (e) => {
+        e.preventDefault();
+        cancelBtn.style.display = 'flex';
+        form.style.display = 'block';
+        show.style.display='none';
+    });
+    
+    cancelBtn.addEventListener('click', () => {
+        cancelBtn.style.display = 'none';
+        form.style.display = 'none';
+        
+    });
+</script>
+</html>
