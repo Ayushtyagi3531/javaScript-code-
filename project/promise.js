@@ -78,11 +78,35 @@ const fivepromise=new Promise((resolve,reject)=>{
 async function my(){
     try{
         const response=await fivepromise
-    console.log(response)
+    //console.log(response)
     }
     catch(error){
-        console.log(error)
+        //console.log(error)
     }
     
 }
 my()
+
+
+
+async function myurl(){
+    try{
+        const response=await fetch('https://randomuser.me/api/')
+        const data=await response.json()
+        console.log(data)
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+//myurl()
+
+
+fetch('https://randomuser.me/api/').then((response)=>{
+    return response.json()
+}).then((data)=>{
+    console.log(data)
+}).catch((error)=>{
+    console.log(error)
+})
+
