@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile</title>
+    <style>
+        /* Basic body styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container for the profile */
+        .profile-container {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        /* Profile title */
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Search container to align input and button */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Styling the input box */
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Input focus state */
+        input[type="text"]:focus {
+            border-color: #0366d6;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Button styling */
+        button#searchBtn {
+            padding: 10px 20px;
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Button hover state */
+        button#searchBtn:hover {
+            background-color: #0356b0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profile section hidden by default */
+        #profile {
+            margin-top: 30px;
+            display:none;
+        }
+
+        /* Profile info container */
+        .profile-info {
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Avatar image styling */
+        .profile-info img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Name styling */
+        .profile-info h2 {
+            font-size: 22px;
+            color: #333;
+            font-weight: 600;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Bio and other info styling */
+        .profile-info p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        /* Strong text for labels */
+        .profile-info strong {
+            color: #333;
+        }
+
+        /* Links styling */
+        a {
+            color: #0366d6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Profile link button styling */
+        a#profileLink {
+            display: block;
+            background-color: #0366d6;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover state for profile link button */
+        a#profileLink:hover {
+            background-color: #0356b0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            input[type="text"] {
+                width: 100%;
+            }
+
+            button#searchBtn {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+        }
+        #loading {
+            display: none; /* Hidden by default */
+            font-size: 18px;
+            color: #0366d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>GitHub Profile Search</h1>
+        <div class="search-container" id="container">
+            <input type="text" id="username" placeholder="Enter GitHub username" />
+            <button id="searchBtn">Search</button>
+            <h2 id="error"></h2>
+        </div>
+        <div id="loading">Loading...</div>
+
+        <div id="profile">
+            <div class="profile-info">
+                <img id="avatar" src="https://avatars.githubusercontent.com/u/9919?v=4" alt="GitHub Avatar" />
+                <h2 id="name">GitHub Name</h2>
+                <p id="bio">GitHub Bio goes here.</p>
+                <p><strong>Repositories:</strong> <span id="repos">0</span></p>
+                <p><strong>Followers:</strong> <span id="followers">0</span></p>
+                <p><strong>Following:</strong> <span id="following">0</span></p>
+                <p><strong>Gists:</strong> <span id="gists">0</span></p>
+                <p><strong>Company:</strong> <span id="company">N/A</span></p>
+                <p><strong>Location:</strong> <span id="location">N/A</span></p>
+                <p><strong>Blog:</strong> <a id="blog" href="#" target="_blank">N/A</a></p>
+                <p><strong>Member Since:</strong> <span id="created_at">N/A</span></p>
+                <a id="profileLink" href="#" target="_blank">Visit GitHub Profile</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const name = document.getElementById('name');
+const avatar = document.getElementById('avatar');
+const bio = document.getElementById('bio');
+const Repositories = document.getElementById('repos');
+const Followers = document.getElementById('followers');
+const Following = document.getElementById('following');
+const Gists = document.getElementById('gists');
+const Company = document.getElementById('company');
+const Location = document.getElementById('location');
+const Blog = document.getElementById('blog');
+const member = document.getElementById('created_at');
+const profile = document.getElementById('profileLink');
+const loadingIndicator = document.getElementById('loading'); // Loading indicator
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const usernameRegex = /^[a-zA-Z0-9](?:-?[a-zA-Z0-9]){0,38}$/;
+
+    if (username.length >= 4 && usernameRegex.test(username)) {
+        loadingIndicator.style.display = 'block'; // Show loading indicator
+
+        async function github() {
+            try {
+                const url = `https://api.github.com/users/${username}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('User not found');
+                }
+                const data = await response.json();
+
+                name.innerHTML = data.name || 'Name not available';
+                bio.innerHTML = data.bio ? data.bio : 'Bio is not available';
+                Repositories.innerHTML = data.public_repos;
+                Followers.innerHTML = data.followers;
+                Following.innerHTML = data.following;
+                Gists.innerHTML = data.public_gists;
+                Company.innerHTML = data.company || 'Not Available';
+                Location.innerHTML = data.location || 'Not Available';
+                avatar.src = data.avatar_url;
+                member.innerHTML = new Date(data.created_at).toLocaleDateString();
+                Blog.innerHTML = data.blog ? data.blog : 'Not found';
+                Blog.href = data.blog ? data.blog : '#';
+                profile.href = data.html_url;
+                document.getElementById('profile').style.display = 'block';
+                document.getElementById('username').value = '';
+                document.getElementById('error').innerHTML = ''; // Clear any previous error messages
+
+            } catch (error) {
+                document.getElementById('error').innerHTML = `An error occurred: ${error.message}`;
+            } finally {
+                loadingIndicator.style.display = 'none'; // Hide loading indicator
+            }
+        }
+        github();
+    } else {
+        document.getElementById('error').innerHTML = "Invalid GitHub username";
+    }
+});
+
+</script>
+</html>
